@@ -1,4 +1,4 @@
-var api_url = 'http://localhost/trainings/JKNNS/to-do-list-server/';
+var api_url = 'http://nasrulhazim.com/to-do-list-server/';
 jQuery(document).ready(function($) {
 	$( ".date-input-css" ).datepicker();
 	task_list();
