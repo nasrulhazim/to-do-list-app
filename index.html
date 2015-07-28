@@ -1,0 +1,123 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="vendor/jquery-mobile/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" href="vendor/jquery-mobile/themes/jknns.min.css" />
+  		<link rel="stylesheet" href="vendor/jquery-mobile/themes/jquery.mobile.icons.min.css" />
+
+  		<!-- include datepicker 2 styles -->
+  		<link rel="stylesheet" href="vendor/jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.css" />
+  		<link rel="stylesheet" href="vendor/jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.theme.css" />
+
+		<script src="vendor/jquery/jquery-1.11.3.min.js"></script>
+		
+		<!-- include jquery ui widget: datepicker -->
+		<script src="vendor/jquery-mobile-datepicker-wrapper/external/jquery-ui/datepicker.js"></script>
+
+		<script src="vendor/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+		
+		<!-- include datepicker wrapper -->
+		<script src="vendor/jquery-mobile-datepicker-wrapper/jquery.mobile.datepicker.js"></script>
+		
+	</head>
+	<body>
+
+		<div id="main">
+			<!-- Web Mobile: Header -->
+			<div data-role="header">
+		    	<h1>To.Do.List</h1>
+		    	<a href="#popup-add-task"  data-rel="popup"  data-transition="fade"  class="ui-nodisc-icon ui-btn ui-btn-right ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-b ui-btn-inline">Plus</a>
+			</div>
+
+			<!-- Web Mobile: Content -->
+			<div data-role="main" class="ui-content">
+				<table data-role="table" data-mode="columntoggle" id="main-table" class="ui-body-d ui-shadow table-stripe ui-responsive">
+					<thead>
+						<tr class="ui-bar-d">
+							<th>#</th>
+							<th data-priority="1">Name</th>
+							<th data-priority="2">Date</th>
+							<th data-priority="3">Status</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody id="todolist-data">
+						
+					</tbody>
+				</table>
+			</div>
+
+			<!-- Popup: Add To.Do Item -->
+			<div data-role="popup" id="popup-add-task" style="padding: 10px 20px;">
+				<h3>Add To.Do Item</h3>
+
+		  		<input type="text" id="task-add-name" name="task-add-name" placeholder="To.Do Name">
+		  		<textarea id="task-add-description" name="task-add-description" placeholder="To.Do Description"></textarea>
+
+		  		<input placeholder="To.Do Date" type="text" class="date-input-css" name="task-add-date" id="task-add-date">
+
+		  		<div class="ui-shadow ui-btn" onclick="add();">Submit</div>
+			</div>
+
+			<!-- Popup: Edit To.Do Item -->
+			<div data-role="popup" id="popup-edit-task" style="padding: 10px 20px;">
+				
+				<h3>Edit To.Do Item</h3>
+
+				<input type="hidden" name="task-edit-id" id="task-edit-id">
+
+		  		<input type="text" id="task-edit-name" name="task-edit-name" placeholder="To.Do Name">
+		  		<textarea id="task-edit-description" name="task-edit-description" placeholder="To.Do Description"></textarea>
+
+		  		<input placeholder="To.Do Date" type="text" class="date-input-css" name="task-edit-date" id="task-edit-date">
+
+		  		<div class="ui-shadow ui-btn" onclick="save_edit();">Submit</div>
+			  	
+			</div>
+
+			<!-- Popup: View To.Do Item -->
+			<div data-role="popup" id="popup-view-task" style="padding: 10px 20px;">
+				<h3>View To.Do Item</h3>
+				<h3 id="task-view-name">Item name <small id="task-view-date">Item date</small></h3>
+				<p id="task-view-description">Item description</p>
+			</div>
+
+			<!-- Popup: Mark To.Do Item Status -->
+			<div data-role="popup" id="popup-status" data-dismissible="false" style="max-width:400px;">
+			    <div data-role="header" data-theme="a">
+			    <h1>Mark To.Do Item Status</h1>
+			    </div>
+			    <div role="main" class="ui-content">
+			    	<input type="hidden" id="task-status-id">
+			    	<label>Select status:</label>
+			    	<select id="task-status">
+			    		<option value="Pending">Pending</option>
+			    		<option value="In Progress">In Progress</option>
+			    		<option value="Done">Done</option>
+			    		<option value="Cancelled">Cancelled</option>
+			    	</select>
+			    		
+			        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back">Cancel</a>
+			        <div onclick="save_status();" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back" data-transition="flow">Update</div>
+			    </div>
+			</div>
+
+			<!-- Popup: Delete To.Do Item -->
+			<div data-role="popup" id="popup-delete" data-dismissible="false" style="max-width:400px;">
+			    <div data-role="header" data-theme="a">
+			    <h1>Delete To.Do Item?</h1>
+			    </div>
+			    <div role="main" class="ui-content">
+			    	<input type="hidden" name="task-delete-id" id="task-delete-id">
+			        <h3 class="ui-title">Are you sure you want to delete this To.Do Item?</h3>
+			    <p>This action cannot be undone.</p>
+			        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back">Cancel</a>
+			        <div onclick="delete_now();" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back" data-transition="flow">Delete</div>
+			    </div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/todolist.js"></script>
+	</body>
+</html>
